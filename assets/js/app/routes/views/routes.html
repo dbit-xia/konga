@@ -4,7 +4,7 @@
             data-ui-sref="services"
             ng-if="user.hasPermission($state.name.split('.')[0],'create')"
             >
-            <small class='text-info'>You can only create routes from a service page</small>
+            <small class='text-info'>You can only create routes from a service pag2e233</small>
         </a>
         <list-search
                 class="pull-right"
@@ -20,9 +20,11 @@
         <div class="table-responsive" >
             <table class="table table-hover table-striped">
                 <tr>
+                    
                     <th width="1" ng-if="user.hasPermission($state.name.split('.')[0],'edit')"></th>
                     <th width="1" ng-if="user.hasPermission($state.name.split('.')[0],'edit')"></th>
                     <th width="1"></th>
+                    <th width="1" class="text-nowrap">优先级</th>
                     <th width="{{item.width}}" class="text-nowrap"
                         data-ng-repeat="item in titleItems | filter:titleFilter"
                     >
@@ -51,7 +53,7 @@
 
                         <i
                                 uib-tooltip="Strip Path"
-                                ng-click="toggleStripPath(route)"
+                                
                                 data-ng-class="{'text-primary' : route.strip_path,'text-muted' : !route.strip_path}"
                                 class="mdi mdi-link-off clickable">
                         </i>
@@ -59,14 +61,18 @@
                     <td ng-if="user.hasPermission($state.name.split('.')[0],'edit')">
                         <i
                                 uib-tooltip="Preserve Host"
-                                ng-click="route.preserve_host=!route.preserve_host;updateRoute(route.id,{preserve_host : route.preserve_host})"
                                 class="mdi clickable" ng-class="route.preserve_host ? 'mdi-cloud-outline text-primary' : 'mdi-cloud-off-outline text-muted'">
 
                         </i>
 
                     </td>
+                    
+
                     <td>
                         <raw-view data-item="route"></raw-view>
+                    </td>
+                    <td>
+                        {{route.regex_priority}}
                     </td>
                     <td width="1">
                         <strong class="no-wrap">
